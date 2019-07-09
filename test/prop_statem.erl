@@ -57,5 +57,5 @@ sample_args(_S) ->
 sample_next(S, _Res, []) ->
   S.
 
-produce_post(_S, [], _Res) ->
+sample_post(_S, [], _Res) ->
   true.
