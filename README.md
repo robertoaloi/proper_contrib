@@ -44,17 +44,18 @@ allowing all the logic (i.e. preconditions, postconditions, etc.)
 related to the same _COMMAND_ to be grouped together, rather than be
 scattered across the entire _statem_ callback module.
 
-The boilerplate also makes the `command/1` not needed
-anymore. Commands will, instead, be dynamically found _by convention_
-(i.e. by looking at exported functions of arity `1` within the same
-module whose name ends with `_args`). An optional `weight/1` function
-allows users to specify a different frequency for each command.
+The boilerplate also makes the `command/1` function not needed
+anymore. The list of _commands_, in fact, are dynamically inferred _by
+convention_ (i.e. by looking at exported functions of arity `1` within
+the same module whose name ends with `_args`). An optional `weight/1`
+callback function allows users to specify a different _frequency_ for
+each command.
 
 ### Getting Started
 
-To get started, just include the `proper_contrib` repo as a test
-dependency for your project. For example, if you are using the
-`rebar3` build tool, you can add the following to your `rebar.config`:
+To get started, include the `proper_contrib` repo as a test dependency
+for your project. For example, if you are using the `rebar3` build
+tool, you can add the following to your `rebar.config`:
 
 ```erlang
 {profiles, [{test, {deps, [{proper_contrib, {git, "https://github.com/robertoaloi/proper_contrib.git", {tag, "0.1.0"}}}]}}]}.
