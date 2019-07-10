@@ -18,22 +18,22 @@
 %%==============================================================================
 %% Type Definitions
 %%==============================================================================
--type options() :: #{ setup_fun    => fun(()      -> any())
-                    , teardown_fun => fun((any()) -> ok)
-                    , cleanup_fun  => fun(()      -> ok)
-                    , whenfail_fun => fun(( proper_statem:command_list()
-                                          , proper_statem:history()
-                                          , proper_statem:dynamic_state()
-                                          , proper_statem:statem_result()
-                                          ) -> ok)
-                                         }.
-
 -type symbolic_call() :: {'call', atom(), atom(), [any()]}.
 -type symbolic_var()  :: {'var', pos_integer()}.
 -type command()       :: {'set', symbolic_var(), symbolic_call()}
                        | {'init', any()}.
 -type command_list()  :: [command()].
 -type history()       :: [{any(), any()}].
+
+-type options() :: #{ setup_fun    => fun(()      -> any())
+                    , teardown_fun => fun((any()) -> ok)
+                    , cleanup_fun  => fun(()      -> ok)
+                    , whenfail_fun => fun(( command_list()
+                                          , history()
+                                          , any()
+                                          , any()
+                                          ) -> ok)
+                                         }.
 
 %%==============================================================================
 %% API
