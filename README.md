@@ -58,7 +58,7 @@ for your project. For example, if you are using the `rebar3` build
 tool, you can add the following to your `rebar.config`:
 
 ```erlang
-{profiles, [{test, {deps, [{proper_contrib, {git, "https://github.com/robertoaloi/proper_contrib.git", {tag, "0.1.0"}}}]}}]}.
+{profiles, [{test, {deps, [{proper_contrib, "0.1.0"}]}}]}.
 ```
 
 Then, include the `proper_contrib_statem.hrl` file in your
