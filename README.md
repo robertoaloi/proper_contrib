@@ -5,9 +5,21 @@
 
 A collection of goodies for the property-based testing framework PropEr.
 
-## Write your PropEr `statem` modules a' la QuickCheck
+## Getting Started
 
-### Rationale
+To get started, simply include the `proper_contrib` repo as a test
+dependency for your project. For example, if you are using the
+`rebar3` build tool, you can add the following to your `rebar.config`:
+
+```erlang
+{profiles, [{test, {deps, [{proper_contrib, "0.1.0"}]}}]}.
+```
+
+## Features
+
+### Write your PropEr `statem` modules a' la QuickCheck
+
+#### Rationale
 
 Both
 [PropEr](https://proper-testing.github.io/apidocs/proper_statem.html)
@@ -52,17 +64,9 @@ the same module whose name ends with `_args`). An optional `weight/1`
 callback function allows users to specify a different _frequency_ for
 each command.
 
-### Getting Started
+#### Usage
 
-To get started, include the `proper_contrib` repo as a test dependency
-for your project. For example, if you are using the `rebar3` build
-tool, you can add the following to your `rebar.config`:
-
-```erlang
-{profiles, [{test, {deps, [{proper_contrib, "0.1.0"}]}}]}.
-```
-
-Then, include the `proper_contrib_statem.hrl` file in your
+Simply include the `proper_contrib_statem.hrl` file in your
 `proper_statem` callback module:
 
 ```erlang
@@ -88,7 +92,7 @@ And you are ready to go. The header will define the `proper_statem`
 callback functions for you and will proxy calls to the new callback
 functions whenever appropriate.
 
-### Example
+#### Example
 
 A _traditional_ `proper_statem` may look like the following (extracted
 from the _PropEr_ [official
@@ -153,6 +157,58 @@ delete_account_next(S, Res, [Password]) ->
 delete_account_post(_S, [Password], Res) ->
   Result =:= account_deleted.
 ```
+
+### Simpler `proper_statem` properties
+
+#### Rationale
+
+When implementing a _statem_ callback module in _PropEr_ (or even
+_QuickCheck for what matters) you often end up copy-pasting a bunch of
+boilerplate code in your property. This boilerplate code includes
+calls to your setup/teardown functions, some `?WHENFAIL` actions, some
+statistical aggregations. Why not to refactor all of this boilerplate
+into a separate, re-usable module? This is what the
+`proper_contrib_statem` provides.
+
+### Usage
+
+From the property in your _proper\_statem_ callback module, simply
+invoke the `proper_contrib_statem:run/1` function, instead of
+implementing the `?FORALL` boilerplate yourself:
+
+```erlang
+prop_sample() ->
+  proper_contrib_statem:run(?MODULE).
+```
+
+The above will give you out-of-the-box:
+
+* The `?FORALL` boilerplate
+* A categorization of commands by command name
+* A more readable _history_ printout, annotated with _command names_
+* A more readbale _state evolution_
+
+A `proper_contrib_statem:run/2` function is also available to override
+some of the above, default behaviours:
+
+```erlang
+prop_sample() ->
+  Config = #{ setup_fun -> fun setup/0
+            , teardown_fun -> fun teardown/1
+            , cleanup_fun -> fun cleanup/0
+            , whenfail_fun -> fun whenfail/4
+            },
+  proper_contrib_statem:run(?MODULE, Config).
+```
+
+The `setup/0` function is executed _once_ before the first test and
+its return value is passed to the `teardown/1` function. The
+`teardown/1` function is executed _once_ at the end of all tests. The
+`cleanup/0` function is executed between each sequence of commands.
+Finally, the `whenfail/4` function (used by the `?WHENFAIL` macro)
+takes four arguments: a `proper_statem:command_list()`, a
+`proper_statem:history()`, a `proper_statem:dynamic_state()` and a
+`proper_statem:statem_result()`.
 
 # Authors
 
