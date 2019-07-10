@@ -193,9 +193,9 @@ some of the above, default behaviours:
 
 ```erlang
 prop_sample() ->
-  Config = #{ setup_fun -> fun setup/0
+  Config = #{ setup_fun    -> fun setup/0
             , teardown_fun -> fun teardown/1
-            , cleanup_fun -> fun cleanup/0
+            , cleanup_fun  -> fun cleanup/0
             , whenfail_fun -> fun whenfail/4
             },
   proper_contrib_statem:run(?MODULE, Config).
