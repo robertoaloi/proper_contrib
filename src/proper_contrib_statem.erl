@@ -38,11 +38,14 @@
 %%==============================================================================
 %% API
 %%==============================================================================
--spec run(atom()) -> ok.
+
+-spec run(atom()) ->
+   {'setup', fun((...) -> fun(() -> any())), boolean()}.
 run(Module) ->
   run(Module, #{}).
 
--spec run(atom(), options()) -> ok.
+-spec run(atom(), options()) ->
+   {'setup', fun((...) -> fun(() -> any())), boolean()}.
 run(Module, Options) ->
   SetupFun    = maps:get(setup_fun    , Options, fun() -> ok end),
   TearDownFun = maps:get(teardown_fun , Options, fun(_) -> ok end),
