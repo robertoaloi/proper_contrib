@@ -8,6 +8,10 @@
 %%   -include_lib("proper_contrib/include/proper_contrib_statem.hrl").
 %%
 %%==============================================================================
+
+-ifndef(_PROPER_CONTRIB_STATEM_HRL_).
+-define(_PROPER_CONTRIB_STATEM_HRL_, true).
+
 command(State) ->
   Funs0 = [ {F, list_to_atom(atom_to_list(F) ++ "_args")}
             || {F, _} <- ?MODULE:module_info(exports)
@@ -53,3 +57,5 @@ postcondition(S, {call, M, F, Args}, Res) ->
     true  -> M:Post(S, Args, Res);
     false -> true
   end.
+
+-endif.
