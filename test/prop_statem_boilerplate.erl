@@ -1,7 +1,7 @@
 %%==============================================================================
 %% Test basic usage of the proper_contrib_statem.hrl boilerplate
 %%==============================================================================
--module(prop_statem).
+-module(prop_statem_boilerplate).
 
 %% Behaviour
 -behaviour(proper_statem).
