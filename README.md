@@ -27,17 +27,17 @@ machines with a syntax which is more similar to the _QuickCheck_ one.
 Specifically, the boilerplate allows the definition of a few
 _optional_ callback functions in a `proper_statem` callback module:
 
-* [COMMAND]_args/1
-* [COMMAND]_next/3
-* [COMMAND]_post/3
-* [COMMAND]_pre/1
-* [COMMAND]_pre/2
+* `[COMMAND]_args/1`
+* `[COMMAND]_next/3`
+* `[COMMAND]_post/3`
+* `[COMMAND]_pre/1`
+* `[COMMAND]_pre/2`
 
 Those calls will replace the following ones:
 
-* next_state/3
-* postcondition/3
-* precondition/2
+* `next_state/3`
+* `postcondition/3`
+* `precondition/2`
 
 This makes the definition of abstract state machines a lot simpler,
 allowing all the logic (i.e. preconditions, postconditions, etc.)
