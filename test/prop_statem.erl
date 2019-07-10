@@ -24,15 +24,7 @@
 %% A Sample Property
 %%==============================================================================
 prop_sample() ->
-  %% ?FORALL(Cmds, proper_statem:commands(?MODULE),
-  %%         begin
-  %%           {_History, _S, Result} = proper_statem:run_commands(?MODULE, Cmds),
-  %%           proper:aggregate( proper_statem:command_names(Cmds)
-  %%                           , Result =:= ok
-  %%                           )
-  %%         end).
-
-proper_contrib_statem:run(?MODULE).
+  proper_contrib_statem:run(?MODULE).
 
 %%==============================================================================
 %% Initial State
