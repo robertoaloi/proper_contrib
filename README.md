@@ -1,6 +1,7 @@
 # proper-contrib
 
 [![Build Status](https://travis-ci.org/robertoaloi/proper_contrib.svg?branch=master)](https://travis-ci.org/robertoaloi/proper_contrib)
+[![Coverage Status](https://coveralls.io/repos/github/robertoaloi/proper_contrib/badge.svg?branch=master)](https://coveralls.io/github/robertoaloi/proper_contrib?branch=master)
 
 A collection of goodies for the property-based testing framework PropEr.
 
