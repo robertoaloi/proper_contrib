@@ -1,6 +1,6 @@
 {application, proper_contrib,
  [{description, "A collection of goodies for the property-based testing framework PropEr"},
-  {vsn, "0.1.0"},
+  {vsn, "0.2.0"},
   {registered, []},
   {applications,
    [kernel,

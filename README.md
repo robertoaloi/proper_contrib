@@ -12,7 +12,7 @@ dependency for your project. For example, if you are using the
 `rebar3` build tool, you can add the following to your `rebar.config`:
 
 ```erlang
-{profiles, [{test, {deps, [{proper_contrib, "0.1.0"}]}}]}.
+{profiles, [{test, {deps, [{proper_contrib, "0.2.0"}]}}]}.
 ```
 
 ## Features
