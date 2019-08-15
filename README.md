@@ -77,7 +77,7 @@ Simply include the `proper_contrib_statem.hrl` file in your
 -include_lib("proper/include/proper.hrl").
 -include_lib("stdlib/include/assert.hrl").
 
--include("proper_contrib_statem.hrl"). %% Yes, this is all!
+-include_lib("proper_contrib/include/proper_contrib_statem.hrl"). %% Yes, this is all!
 
 prop_sample() ->
   ?FORALL(Cmds, proper_statem:commands(?MODULE),
