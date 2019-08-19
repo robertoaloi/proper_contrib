@@ -60,7 +60,7 @@ scattered across the entire _statem_ callback module.
 The boilerplate also makes the `command/1` function not needed
 anymore. The list of _commands_, in fact, are dynamically inferred _by
 convention_ (i.e. by looking at exported functions of arity `1` within
-the same module whose name ends with `_args`). An optional `weight/1`
+the same module whose name ends with `_args`). An optional `weight/2`
 callback function allows users to specify a different _frequency_ for
 each command.
 
@@ -156,6 +156,14 @@ delete_account_next(S, Res, [Password]) ->
 
 delete_account_post(_S, [Password], Res) ->
   Result =:= account_deleted.
+```
+
+As suggested above, it is also possible to tune the frequency with
+which each command is invoked via the optional `weight/2` callback:
+
+```
+weight(_S, create_account) -> 10;
+weight(_S, _Command) -> 1.
 ```
 
 ### Simpler `proper_statem` properties
